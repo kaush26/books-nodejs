@@ -33,7 +33,7 @@ const schema = {
   },
   summary: {
     validation: (value) => {
-      return "";
+      return value || "";
     },
     sanitize: (value) => value?.trim?.(),
   },

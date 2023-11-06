@@ -25,7 +25,7 @@ const accessLogStream = fs.createWriteStream(path.join(".", "access.log"), {
 app.use(morgan("combined", { stream: accessLogStream }));
 app.use(bodyParser.json({ limit: "75mb" }));
 
-app.get("/book", api.getAllBooks);
+app.get("/books", api.getAllBooks);
 app.post("/book/:_id", api.getBook);
 app.post("/add", auth, api.addBook);
 app.post("/update/:_id", auth, api.updateBook);

@@ -13,7 +13,7 @@ const schema = {
 
       return value;
     },
-    sanitize: (value) => value?.trim(),
+    sanitize: (value) => value?.trim?.(),
   },
   password: {
     validation: (value, doc = {}) => {

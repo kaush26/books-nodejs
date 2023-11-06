@@ -8,7 +8,6 @@ import { ObjectId } from "mongodb";
 export const addBook = async (req, res, next) => {
   try {
     const userId = req.userId;
-    console.log(userId);
     const doc = parseValue(bookSchema, req.body);
 
     const result = await db.insertOnly(
@@ -51,6 +50,10 @@ export const updateBook = async (req, res, next) => {
 
     for (const key in doc) {
       if (key in bookSchema) {
+        const validValue = bookSchema[key].validation(doc[key], doc);
+        const sanitizedValue = bookSchema[key].sanitize(validValue);
+
+        doc[key] = sanitizedValue;
         continue;
       }
       delete doc[key];
